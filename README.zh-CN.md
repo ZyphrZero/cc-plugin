@@ -26,12 +26,21 @@
 
 ### Step 2: 使用插件
 
-1. 在用户级别的 CLAUDE.md 中添加
+1. 在用户级别的 CLAUDE.md(通常是: `~/.claude/CLAUDE.md`) 中添加
+
    ```
-   - Always use scout agent to get knowledge and information for codebases, web, documentation
-   - Always try use bg-worker and scout agent to help you finish work
+   <ALWAYS_STEP_ONE>Read {rootPath}/llmdoc/index.md Then, based on the document links and their descriptions, continue reading other related documents (>=1)</ALWAYS_STEP_ONE>
+    <SYSTEM_REMINDER>**Use Scout instead of Explore Agent.**</SYSTEM_REMINDER>
+
+    - **Use Scout instead of Explore Agent.**
+    - **The last TODO for any programming task is always to update the project's documentation system using the docer agent.**
+    - Try to use bg-worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
+    - If you only care about how a task is executed and its results, you should consider using a docker agent.
+    - Always use rule: `ALWAYS_STEP_ONE`
    ```
+
    好了, 现在你可以正常使用了
+
 2. 强制使用 Scout Agent 加强上下文紧凑程度
    ```
    /withScout xxx(你要做的任务)

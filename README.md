@@ -26,12 +26,21 @@
 
 ### Step 2: Use the Plugin
 
-1. Add to your user-level CLAUDE.md
+1. Add to your user-level CLAUDE.md(`~/.claude/CLAUDE.md`)
+
    ```
-   - Always use scout agent to get knowledge and information for codebases, web, documentation
-   - Always try use bg-worker and scout agent to help you finish work
+   <ALWAYS_STEP_ONE>Read {rootPath}/llmdoc/index.md Then, based on the document links and their descriptions, continue reading other related documents (>=1)</ALWAYS_STEP_ONE>
+    <SYSTEM_REMINDER>**Use Scout instead of Explore Agent.**</SYSTEM_REMINDER>
+
+    - **Use Scout instead of Explore Agent.**
+    - **The last TODO for any programming task is always to update the project's documentation system using the docer agent.**
+    - Try to use bg-worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
+    - If you only care about how a task is executed and its results, you should consider using a docker agent.
+    - Always use rule: `ALWAYS_STEP_ONE`
    ```
+
    Done! Now you can use it normally.
+
 2. Force using Scout Agent to enhance context efficiency
    ```
    /withScout xxx(your task)
