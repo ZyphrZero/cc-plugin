@@ -1,6 +1,6 @@
 ---
 name: bg-worker
-description: Executes well-defined tasks including file operations, code writing/modification, Git commands, data processing, and web research. **Best Practice: Invoke multiple bg-workers concurrently with clear functional separation and no overlapping responsibilities. Provide comprehensive task descriptions and expect detailed execution reports.** Can work with scout agent, which can offer a great task context document. If there are contextual documents for the task, you should provide the document path so the agent can read them independently.
+description: Executes well-defined tasks including file operations, code writing/modification, Git commands, data processing, and web research. **Best Practice is Invoke multiple bg-workers concurrently with clear functional separation and no overlapping responsibilities. Provide comprehensive task descriptions and expect detailed execution reports.** Can work with scout agent, which can offer a great task context document. If there are contextual documents for the task, you should provide the document path so the agent can read them independently.
 tools: Bash, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
 model: haiku
 color: pink
