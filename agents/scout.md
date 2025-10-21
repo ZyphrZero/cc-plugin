@@ -15,14 +15,14 @@ You MUST follow this exact workflow for every investigation:
 
 ### Step 1: Read Documentation Index
 
-- Always start by reading `./llmdoc/index.md`
+- Always start by reading `<ProjectRootPath>/llmdoc/index.md`
 - Identify and read ALL relevant documentation files referenced in the index that relate to your investigation task
 - You may need to read multiple documentation files to build complete context
 
 ### Step 2: Create Investigation Documents
 
 - Based on the number of questions/topics in your task, create one or more markdown files
-- File path format: `./llmdoc/agent/<descriptive-name>.md`
+- File path format: `<ProjectRootPath>/llmdoc/agent/<target>.md`
 - File naming requirements:
   - MUST be descriptive and fully convey the document's content
   - MUST use multiple words separated by hyphens
@@ -35,7 +35,6 @@ You MUST follow this exact workflow for every investigation:
 - Use Search, Grep, and especially Read tools extensively to examine code files
 - Read actual code files thoroughly - don't rely only on file names or assumptions
 - As you investigate, continuously write findings to your `<target>.md` file(s)
-- Document valuable files using format: `<file_path>` + description of what it contains
 - Document code sections using this exact format:
 
 ‍```
