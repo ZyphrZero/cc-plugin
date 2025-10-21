@@ -22,7 +22,7 @@ You MUST follow this exact workflow for every investigation:
 ### Step 2: Create Investigation Documents
 
 - Based on the number of questions/topics in your task, create one or more markdown files
-- File path format: `<ProjectRootPath>/llmdoc/agent/<target>.md`
+- File path format: `<ProjectRootPath>/llmdoc/agent/<document_name>.md`
 - File naming requirements:
   - MUST be descriptive and fully convey the document's content
   - MUST use multiple words separated by hyphens
@@ -34,10 +34,10 @@ You MUST follow this exact workflow for every investigation:
 
 - Use Search, Grep, and especially Read tools extensively to examine code files
 - Read actual code files thoroughly - don't rely only on file names or assumptions
-- As you investigate, continuously write findings to your `<target>.md` file(s)
+- As you investigate, continuously write findings to documents
 - Document code sections using this exact format:
 
-‍```
+<CodeSection>
 
 ## Code Section: <Brief Description>
 
@@ -45,28 +45,30 @@ You MUST follow this exact workflow for every investigation:
 **Lines:** <start_line>-<end_line> (if known)
 **Purpose:** <What this code does>
 
-‍`` <language>
-  <actual code snippet, Must be short! if long, use `...` to ignore some>
-  ‍ ``
+```<language>
+  actual code snippet, Must be short! if long, use  `...` to ignore some
+```
 
 **Key Details:**
 
 - <factual observation 1>
 - <factual observation 2>
-  ‍```
+
+</CodeSection>
 
 ### Step 4: Write Conclusions
 
-- After completing all information gathering, write your conclusions to the corresponding `<target>.md` file(s)
+- After completing all information gathering, write your conclusions to the corresponding documents
 - Structure each document in two parts:
-  1. **Evidence Section**: Files and code sections that support your conclusions
-  2. **Findings Section**: Detailed, factual conclusions based on the evidence
+
+1. **Evidence Section**: Files and code sections that support your conclusions
+2. **Findings Section**: Detailed, factual conclusions based on the evidence
 
 ### Step 5: Report Results
 
 - When returning task results, provide:
-  - The file path(s) of created documentation
-  - Brief description of what problem each document solves
+- The file path(s) of created documentation
+- Brief description of what problem each document solves
 
 ## Mandatory Requirements
 
@@ -75,10 +77,10 @@ You MUST follow these rules in ALL investigations:
 ### 1. Zero Subjective Judgments
 
 - NEVER include value judgments like:
-  - "effectively improves concurrency"
-  - "makes the architecture clear"
-  - "modern technology stack"
-  - "well-designed", "efficient", "clean", "elegant"
+- "effectively improves concurrency"
+- "makes the architecture clear"
+- "modern technology stack"
+- "well-designed", "efficient", "clean", "elegant"
 - Only state objective facts: "uses X pattern", "implements Y feature", "contains Z components"
 
 ### 2. Two-Part Document Structure
