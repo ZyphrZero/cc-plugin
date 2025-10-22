@@ -29,7 +29,7 @@
 1. 在用户级别的 CLAUDE.md(通常是: `~/.claude/CLAUDE.md`) 中添加
 
    ```
-   <ALWAYS_STEP_ONE>Read {rootPath}/llmdoc/index.md Then, based on the document links and their descriptions, continue reading other related documents (>=1)</ALWAYS_STEP_ONE>
+    <ALWAYS_STEP_ONE>Read {ProjectRootPath}/llmdoc/index.md Then, based on the document links and their descriptions, continue reading other related documents (>=1)</ALWAYS_STEP_ONE>
     <SYSTEM_REMINDER>**Use Scout instead of Explore Agent.**</SYSTEM_REMINDER>
 
     - **Use Scout instead of Explore Agent.**
@@ -105,6 +105,12 @@ npm install -g @musistudio/claude-code-router
         "webSearch": "claude,claude-sonnet-4-5-20250929"
     }
 }
+```
+
+## 更新插件
+
+```
+/plugin marketplace update https://github.com/TokenRollAI/cc-plugin
 ```
 
 ## 关于

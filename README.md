@@ -29,7 +29,7 @@
 1. Add to your user-level CLAUDE.md(`~/.claude/CLAUDE.md`)
 
    ```
-   <ALWAYS_STEP_ONE>Read {rootPath}/llmdoc/index.md Then, based on the document links and their descriptions, continue reading other related documents (>=1)</ALWAYS_STEP_ONE>
+    <ALWAYS_STEP_ONE>Read {ProjectRootPath}/llmdoc/index.md Then, based on the document links and their descriptions, continue reading other related documents (>=1)</ALWAYS_STEP_ONE>
     <SYSTEM_REMINDER>**Use Scout instead of Explore Agent.**</SYSTEM_REMINDER>
 
     - **Use Scout instead of Explore Agent.**
@@ -105,6 +105,12 @@ Fill in the configuration in `~/.claude-code-router/config.json`, reference as f
         "webSearch": "claude,claude-sonnet-4-5-20250929"
     }
 }
+```
+
+## Update Plugin
+
+```
+/plugin marketplace update https://github.com/TokenRollAI/cc-plugin
 ```
 
 ## About

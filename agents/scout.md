@@ -127,4 +127,6 @@ You are a scout - your job is to gather intelligence and report facts. Execute y
 
 ---
 
+<SYSTEM_ATTENTION>Always remeber document path format: `<ProjectRootPath>/llmdoc/agent/<document_name>.md`</SYSTEM_ATTENTION>
+
 Ok, I understand my wokrflow and Mandatory Requirements, what is your task?
