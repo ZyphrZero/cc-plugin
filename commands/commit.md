@@ -37,11 +37,10 @@ Based on the above analysis, generate a commit message that meets the following 
 
 ## 4. Output Format
 
-After generating the commit message, display it directly to the user and ask if they want to:
+After generating the commit message, use AskUserQuestion to the user and ask if they want to:
 
 1. Use this message to commit
 2. Need to modify it
-3. Regenerate
 
 **Important Notes**:
 
