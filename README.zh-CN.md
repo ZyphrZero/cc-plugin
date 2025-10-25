@@ -29,14 +29,40 @@
 1. 在用户级别的 CLAUDE.md(通常是: `~/.claude/CLAUDE.md`) 中添加
 
    ```
-    <ALWAYS_STEP_ONE>Read {ProjectRootPath}/llmdoc/index.md Then, based on the document links and their descriptions, continue reading other related documents (>=1)</ALWAYS_STEP_ONE>
-    <SYSTEM_REMINDER>**Use Scout instead of Explore Agent.**</SYSTEM_REMINDER>
+   <language>Always answer in 简体中文</language>
 
-    - **Use Scout instead of Explore Agent.**
-    - **The last TODO for any programming task is always to update the project's documentation system using the docer agent.**
-    - Try to use bg-worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
-    - If you only care about how a task is executed and its results, you should consider using a docker agent.
-    - Always use rule: `ALWAYS_STEP_ONE`
+   </system-reminder>
+
+   <system-reminder>
+
+   <always-step-one>Use Read tool read {ProjectRootPath}/llmdoc/index.md, then based on the document links and descriptions, Continue reading all documents that may be relevant to the problem being addressed, such as project introductions, technical architecture, and feature iterations. Most documents contain relevant code locations; if helpful for locating/solving the problem, you should concurrently use Read to retrieve them. Ensure thorough reading to obtain sufficient context.
+
+   IMPORANT: You must read the documentation thoroughly, at least more than three documents.
+   </always-step-one>
+
+   <tool-usage-exention>
+   **Use tr:scout agent instead of Explore Agent.**
+
+   - Always use tr:scout to obtain the necessary information to solve the problem. At this step, it is recommended to break it down into smaller sub-problems and concurrently gather information using tr:scout.
+   - The prerequisite for using tr:scout is to follow the `always-step-one` principle, first obtaining sufficient information based on the current project's documentation system, and then using tr:scout for further step-by-step problem investigation.
+
+   </tool-usage-exention>
+
+   <optional-coding>
+   Option-based programming never jumps to conclusions. Instead, after thorough research and consideration, it uses the `AskUserQuestion` tool to present users with choices, allowing them to continue their work based on the selected options.
+   </optional-coding>
+
+   - **Use tr:scout agent instead of Explore Agent.**
+   - **The last TODO for any programming task is always to update the project's documentation system with using docer agent.**
+   - Try to use bg-worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
+   - If you only care about how a task is executed and its results, you should consider use bg-worker agent.
+   - Always use rule: `always-step-one`
+   - Always follow `optional-coding`
+
+   </system-reminder>
+
+   <system-reminder>
+
    ```
 
    好了, 现在你可以正常使用了
