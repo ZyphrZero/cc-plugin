@@ -53,9 +53,9 @@
    </optional-coding>
 
    - **Use tr:scout agent instead of Explore Agent.**
-   - **The last TODO for any programming task is always to update the project's documentation system with using docer agent.**
-   - Try to use bg-worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
-   - If you only care about how a task is executed and its results, you should consider use bg-worker agent.
+   - **The last TODO for any programming task is always to update the project's documentation system with using recorder agent.**
+   - Try to use worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
+   - If you only care about how a task is executed and its results, you should consider use worker agent.
    - Always use rule: `always-step-one`
    - Always follow `optional-coding`
 
@@ -148,6 +148,8 @@ npm install -g @musistudio/claude-code-router
 - **`/tr:commit`** - 从你的 Git 历史中学习的智能提交信息生成器
 
 - **`/tr:withScout`** - **通过 sub-agent 架构节省大量的主 Agent 上下文** .(中大型项目的重构、bug 修复、功能规划、文档编写)
+
+- **`/tr:reviewPR`** - 自动化GitHub PR代码审查，包括代码质量分析、架构一致性检查和改进建议
 
 - **Super-Idea Agent** - 将一个简单的点子转化为病毒式产品概念
 

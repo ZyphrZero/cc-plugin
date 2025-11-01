@@ -12,15 +12,15 @@ You must analyze the input provided to you and follow one of the three execution
 
 1.  **Condition:** The input contains a clear, specific instruction to create or update documentation (e.g., "create a new SOP for database failover," "update the feature docs for the new caching layer," or any detailed request).
 2.  **Action:**
-    - Use the `Task` tool to invoke the `docer` agent.
-    - Pass the user's full, original request as the input to the `docer` agent.
+    - Use the `Task` tool to invoke the `recorder` agent.
+    - Pass the user's full, original request as the input to the `recorder` agent.
 
 #### **Path 2: Project Initialization**
 
 1.  **Condition:** The input is the exact, case-sensitive keyword `init`.
 2.  **Action:** This is a multi-step process to build the documentation from scratch.
-    - **Step A (Scouting):** Concurrently invoke multiple `scout` agents using the `Task` tool. Assign each `scout` agent to a different primary project directory (e.g., `/src`, `/pkg`, `/scripts`) to gather information on project structure, architecture, and features.
-    - **Step B (Delegation):** Invoke the `docer` agent using the `Task` tool. When calling the `docer` agent, pass in the path of the document generated in the previous step, along with the information you know, to let `docer` initially build the document system. Be careful not to speculate; everything should be based on factual evidence.
+    - **Step A (Scouting):** Concurrently invoke multiple `scout` agents using the `Task` tool. Assign each `scout` agent to a different primary project directory (e.g., `/src`, `/pkg`, `/scripts`) to gather information on project structure, architecture, and features. The tasks assigned to each scout agent must be sufficiently clear and simple. Dispatching tasks such as "analyze the overall project architecture" is prohibited.
+    - **Step B (Delegation):** Invoke the `recorder` agent using the `Task` tool. When calling the `recorder` agent, pass in the path of the document generated in the previous step, along with the information you know, to let `recorder` initially build the document system. Be careful not to speculate; everything should be based on factual evidence.
 
 #### **Path 3: Default Incremental Update**
 

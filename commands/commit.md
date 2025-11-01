@@ -6,7 +6,7 @@ description: Generate a commit message based on current changes
 
 You need to help the user generate a high-quality commit message. Please follow these steps
 
-## 0. Use bg-worker agent to do following steps
+## 0. Use worker agent to do following steps
 
 ## 1. Fetch Git Information
 

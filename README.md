@@ -53,9 +53,9 @@
    </optional-coding>
 
    - **Use tr:scout agent instead of Explore Agent.**
-   - **The last TODO for any programming task is always to update the project's documentation system with using docer agent.**
-   - Try to use bg-worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
-   - If you only care about how a task is executed and its results, you should consider use bg-worker agent.
+   - **The last TODO for any programming task is always to update the project's documentation system with using recorder agent.**
+   - Try to use worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
+   - If you only care about how a task is executed and its results, you should consider use worker agent.
    - Always use rule: `always-step-one`
    - Always follow `optional-coding`
 
@@ -148,6 +148,8 @@ A powerful Claude Code plugin developed by **DJJ** and **Danniel** for the Token
 - **`/tr:commit`** - Intelligent commit message generator that learns from your Git history
 
 - **`/tr:withScout`** - **Save significant main agent context through sub-agent architecture** (ideal for refactoring, bug fixing, feature planning, and documentation in medium to large projects)
+
+- **`/tr:reviewPR`** - Automated GitHub PR code review with code quality analysis, architecture consistency checks, and actionable improvement suggestions
 
 - **Super-Idea Agent** - Transform a simple idea into a viral product concept
 
