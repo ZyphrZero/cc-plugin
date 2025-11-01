@@ -34,25 +34,26 @@ Use the `Task` tool to launch multiple `scout` agents **concurrently**. Use the 
 **Parallel Scout Task Template**:
 
 ```
-=== Global Context ===
 Primary Goal: [Describe the overall task to be completed]
 Working Directory: [Provide the project root directory]
 Known Information: [List any known context to avoid redundant work]
+Related Document: [List any llmdoc file ]
 
-=== Scout A: [Role name for Scout A, e.g., Frontend Auth Investigator] ===
+Scout A: [Role name for Scout A, e.g., Frontend Auth Investigator]
 Responsibility: [Define Scout A's scope, e.g., Investigate auth patterns and token handling in the frontend codebase]
 Research Questions:
 1. [Specific question 1, e.g., After a user logs in, where is the JWT stored (localStorage, Redux store)?]
 2. [Specific question 2, e.g., How are authentication headers injected into API requests?]
 3. [Specific question 3, e.g., Is there a global interceptor for handling 401/403 errors?]
 
-=== Scout B: [Role name for Scout B, e.g., Backend API Investigator] ===
+Scout B: [Role name for Scout B, e.g., Backend API Investigator]
 Responsibility: [Define Scout B's scope, e.g., Investigate the authentication mechanism of the backend API]
 Research Questions:
 1. [Specific question 1, e.g., Which middleware is responsible for validating incoming JWTs?]
 2. [Specific question 2, e.g., What are the endpoints for issuing and refreshing tokens?]
 3. [Specific question 3, e.g., What is the token payload structure and how is its expiration set?]
 
+Scout C
 ...
 ```
 
