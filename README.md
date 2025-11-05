@@ -145,13 +145,61 @@ A powerful Claude Code plugin developed by **DJJ** and **Danniel** for the Token
 
 ## Core Features
 
+### 🤖 Multi-Agent System
+
+- **`worker`** - Execution agent: handles well-defined tasks including file operations, code writing, Git commands, data processing, etc.
+- **`scout`** - Investigation agent: deep codebase analysis expert, generates objective technical reports and architecture analysis
+- **`recorder`** - Documentation agent: intelligent documentation system management, maintains accuracy and completeness of project technical documentation
+
+### 📝 Documentation-Driven Development
+
+- **`/tr:initDoc`** - Initialize project documentation system, automatically generate complete technical documentation structure
+- **`/tr:updateDoc`** - Update documentation system, synchronize technical documentation based on code changes
+- **`/tr:what`** - Smart instruction enhancement, provides clear technical guidance and suggestions for programming tasks
+
+### 🔧 Development Workflow
+
 - **`/tr:commit`** - Intelligent commit message generator that learns from your Git history
-
 - **`/tr:withScout`** - **Save significant main agent context through sub-agent architecture** (ideal for refactoring, bug fixing, feature planning, and documentation in medium to large projects)
-
 - **`/tr:reviewPR`** - Automated GitHub PR code review with code quality analysis, architecture consistency checks, and actionable improvement suggestions
 
-- **Super-Idea Agent** - Transform a simple idea into a viral product concept
+## Recommended Workflow
+
+### 1. Initialize New Project
+
+```bash
+# First time use, establish complete documentation system for your project
+/tr:initDoc
+```
+
+### 2. Daily Development Flow
+
+```bash
+# Get clear programming guidance
+/tr:what "I need to implement user authentication feature"
+
+# Perform deep code analysis
+/tr:withScout "Analyze existing code architecture and find the best integration point"
+
+# Generate intelligent commit message
+/tr:commit
+```
+
+### 3. Documentation Maintenance
+
+```bash
+# Update documentation system after code changes
+/tr:updateDoc
+```
+
+### 4. Code Quality Assurance
+
+```bash
+# Review Pull Request
+/tr:reviewPR 123
+```
+
+---
 
 <div align="center">
 
