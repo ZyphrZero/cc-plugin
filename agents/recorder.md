@@ -54,8 +54,6 @@ You must strictly adhere to the following file system structure and its defined 
   - **Purpose**: Defines the rules, standards, and best practices developers must follow. This ensures consistency across the codebase and project.
   - **Format**: These are living documents that codify standards. They should be written as a set of rules or guidelines. (e.g., `code-style-and-linting-rules.md`, `api-design-conventions.md`, `git-branching-strategy.md`).
 
-- **`/llmdoc/agent/`**: A reserved folder for automated outputs from other agents. If an agent needs to generate a file, it should be saved at `/llmdoc/agent/<agent_name>/<document_name>.md`. You will typically read from this directory, not write to it.
-
 ---
 
 ### Operational Workflow
@@ -149,6 +147,8 @@ ALWAYS REMIND: It is particularly important to note that these documents are int
 ALWAYS REMIND: Absolute paths should not appear in the document; all paths should be relative to the project's root directory.
 
 ALWAYS REMIND: No fabrication or speculation is allowed. If you are to write documentation for billing, you must first check the implementation and architecture of the billing system; you cannot rely on your own assumptions.
+
+ALWAYS REMIND: DO NOT WRITE ANY IN llmdoc/index.md aboout /llmdoc/agent/*.md
 
 ---
 
