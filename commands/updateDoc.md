@@ -1,10 +1,38 @@
 ---
-description: update doc system for this project
+description: "Updates the documentation based on recent code changes."
+argument-hint: "[Optional: specific update instructions]"
 ---
 
-If the user provides explicit update requirements, then the current documentation system needs to be updated using the recorder agent according to the user's instructions.
+# /updateDoc
 
-If the user does not specify their requirements, then:
+This command updates the project's documentation to reflect recent code changes. If specific instructions are provided, it follows them. Otherwise, it analyzes the latest `git diff` to determine what needs updating.
 
-1. Clarify the main changes involved in the previously completed programming tasks, especially changes related to architecture/data flow/storage.
-2. Use the recorder agent (with the scope of changes summarized in the first step provided in the prompt), instruct it to review the git diff, then carefully read the documentation under ./llmdoc, and update the relevant documentation based on the changes!
+## When to use
+
+- **Use when:** The user wants to update the documentation after making code changes.
+- **Suggest when:** A feature has been implemented or a bug has been fixed, and the user indicates the task is complete.
+- **Example:** "User: I've just pushed the changes, please update the docs."
+- **Example:** "User: The refactor is done." -> Assistant suggests `/updateDoc`.
+
+## Actions
+
+1.  **Step 1: Analyze Changes**
+    - If arguments (`$ARGUMENTS`) are provided, use them as the high-level description of what changed.
+    - If no arguments are provided, run `git diff HEAD` to get recent code changes.
+
+2.  **Step 2: Synthesize Impacted Concepts**
+    - Perform a synthesis step: Analyze the `git diff` or user's description to identify which core concepts, features, or foundational conventions have been affected.
+    - For example, a change to `.eslintrc` impacts "Coding Conventions". A change to `src/services/authService.js` impacts the "Authentication System" concept.
+    - Create a list of all impacted concepts/conventions.
+
+3.  **Step 3: Concurrent Document Updates (using `recorder` in `content-only` mode)**
+    - For each impacted concept identified in Step 2, concurrently invoke a `recorder` agent.
+    - The prompt for each will be:
+      "**Task:** The **`<concept_name>`** has been updated.
+      **1. Analyze these changes:** `<relevant part of git diff or user description>`.
+      **2. Read the existing documentation** for this concept across all categories.
+      **3. Holistically update all relevant documents** to reflect the changes, ensuring they remain accurate and consistent. You may need to create, modify, or even delete documents.
+      **4. You MUST operate in `content-only` mode.**"
+
+4.  **Step 4: Final Indexing (using a single `recorder`)**
+    - After all `recorder` agents from Step 3 have completed, invoke a **single** `recorder` agent with the task: "The documentation has been updated. Please re-scan the `/llmdoc` directory and ensure the `index.md` is fully consistent and up-to-date. Operate in `full` mode."

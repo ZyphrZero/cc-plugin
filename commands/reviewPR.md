@@ -1,175 +1,41 @@
 ---
-description: Automatically review GitHub PR with code quality and architecture analysis
+description: "Conducts an automated review of a GitHub Pull Request."
+argument-hint: "[PR number or URL]"
 ---
 
-# Review PR Command
+# /reviewPR
 
-You are responsible for conducting a comprehensive review of a GitHub Pull Request. Your goal is to analyze code changes, check code quality, verify architectural consistency, and provide actionable improvement suggestions.
+This command conducts a comprehensive review of a GitHub Pull Request. If no PR number or URL is provided as an argument (`$1`), it attempts to find the PR associated with the current git branch.
 
-## 0. Use worker agents for parallel execution
+## When to use
 
-## 1. Obtain PR Information
+- **Use when:** The user explicitly asks to review a pull request, e.g., "review this PR", "can you check PR #123?".
+- **Suggest when:** The user mentions merging code, a pull request, or asks for a code quality check on a branch that has an open PR.
+- **Example:** "User: My feature is ready for review." -> Assistant checks for a PR and suggests `/reviewPR`.
+- **Example:** "User: /reviewPR 123"
 
-### Step 1.1: Determine PR Number
+## Actions
 
-**If the user provides a PR number** (e.g., `/tr:reviewPR 123`):
+1.  **Step 1: Obtain PR Information**
 
-- Use the provided PR number directly
+    - If an argument (`$1`) is provided, use it as the PR identifier.
+    - If no argument is provided, use a `worker` agent to run `gh pr status` to find the current branch's PR number.
+    - If no PR is found, inform the user and stop.
+    - Use a `worker` agent to run `gh pr view <PR_NUMBER> --json ...` and `gh pr diff <PR_NUMBER>` in parallel to fetch PR details.
 
-**If no PR number is provided**:
+2.  **Step 2: Parallel Analysis Phase**
 
-- Use worker agent to run `gh pr status` to check if the current branch has an associated PR
-- If a PR is found, extract its number
-- If no PR is found, inform the user and ask them to provide a PR number
+    - Deploy `investigator` agents concurrently to analyze different aspects of the PR:
+    - **Investigator A (Code Quality):** Analyze style inconsistencies, complexity, duplication, naming, and error handling.
+    - **Investigator B (Architecture):** Verify alignment with project structure, new dependencies, design patterns, and separation of concerns.
+    - **Investigator C (Tests & Docs):** Check for appropriate test coverage and documentation updates.
 
-### Step 1.2: Fetch PR Details
+3.  **Step 3: Synthesize and Generate Report**
 
-Use worker agent to run the following commands in parallel:
+    - Integrate the findings from all investigators.
+    - Categorize issues by severity (Critical, Important, Suggestion).
+    - Generate a structured review comment in Markdown format, including a summary, detailed recommendations, and an overall assessment.
 
-- `gh pr view <PR_NUMBER> --json title,body,author,baseRefName,headRefName,commits,files`
-- `gh pr diff <PR_NUMBER>`
-
-## 2. Parallel Analysis Phase
-
-Deploy 2-3 scout agents concurrently to analyze different aspects of the PR:
-
-### Scout A: Code Quality Analysis
-
-**Responsibility**: Analyze code quality issues in the PR
-
-**Research Questions**:
-
-1. Are there any code style inconsistencies or violations of project conventions?
-2. Are there overly complex functions or methods that should be refactored?
-3. Are there duplicated code blocks that could be abstracted?
-4. Are variable and function names clear and semantic?
-5. Is error handling implemented properly?
-
-### Scout B: Architecture Consistency Check
-
-**Responsibility**: Verify that PR changes align with project architecture
-
-**Research Questions**:
-
-1. Do the changes follow the existing project structure and module organization?
-2. Are new dependencies introduced? Are they necessary and appropriate?
-3. Do the changes follow established design patterns in the codebase?
-4. Are there any violations of separation of concerns or SOLID principles?
-5. How do the changes integrate with existing components/modules?
-
-### Scout C (Optional): Test Coverage and Documentation
-
-**Responsibility**: Check test coverage and documentation quality
-
-**Research Questions**:
-
-1. Are new features or bug fixes accompanied by appropriate tests?
-2. Are edge cases and error scenarios covered in tests?
-3. Is the code properly documented (comments, docstrings, README updates)?
-4. Are there breaking changes that need to be documented?
-
-## 3. Synthesize Analysis Results
-
-After all scout agents complete their investigation:
-
-1. **Integrate Reports**: Combine findings from all scout agents
-2. **Identify Critical Issues**: Categorize findings by severity:
-   - 🔴 Critical: Must be fixed (security issues, breaking changes, major bugs)
-   - 🟡 Important: Should be fixed (code quality, architecture violations)
-   - 🟢 Suggestions: Nice to have (minor improvements, style suggestions)
-3. **Generate Improvement Suggestions**: For each identified issue, provide:
-   - Clear description of the problem
-   - Explanation of why it matters
-   - Specific code suggestions or refactoring approaches
-   - Code examples where applicable
-
-## 4. Generate Review Comment
-
-Create a structured review comment in the following markdown format:
-
-```markdown
-## PR Review Summary
-
-### Overview
-
-[Brief summary of the PR's purpose and scope]
-
-### Code Quality Analysis
-
-[Findings from Scout A]
-
-- ✅ Strengths: [What was done well]
-- ⚠️ Issues Found: [List of code quality issues with severity indicators]
-
-### Architecture Consistency
-
-[Findings from Scout B]
-
-- ✅ Alignment: [How changes align with existing architecture]
-- ⚠️ Concerns: [Architectural issues or inconsistencies]
-
-### Test Coverage & Documentation
-
-[Findings from Scout C if applicable]
-
-- ✅ Coverage: [Test coverage status]
-- ⚠️ Gaps: [Missing tests or documentation]
-
-### Detailed Recommendations
-
-#### 🔴 Critical Issues
-
-[List critical issues that must be addressed]
-
-#### 🟡 Important Improvements
-
-[List important improvements]
-
-#### 🟢 Suggestions
-
-[List optional suggestions for enhancement]
-
-### Conclusion
-
-[Overall assessment and recommendation: APPROVE / REQUEST_CHANGES / COMMENT]
-
----
-
-🤖 Generated with Claude Code Review Assistant
-```
-
-## 5. Submit Review
-
-Use worker agent to submit the review comment:
-
-1. **Preview the review**: Show the generated review comment to the user
-2. **Ask for confirmation**: Use AskUserQuestion to ask the user:
-
-   - "Submit this review to GitHub?"
-   - "Modify the review before submitting?"
-   - "Cancel and exit"
-
-3. **If user confirms submission**:
-   - Determine review state based on findings:
-     - `APPROVE` if no critical or important issues found
-     - `REQUEST_CHANGES` if critical issues exist
-     - `COMMENT` if only suggestions exist
-   - Run: `gh pr review <PR_NUMBER> --<state> --body "<review_comment>"`
-
-## Important Notes
-
-- **Evidence-Based**: All findings must be based on actual code analysis, not assumptions
-- **Constructive Tone**: Feedback should be constructive and actionable
-- **Code Examples**: Provide specific code examples for suggested improvements
-- **Context Awareness**: Consider the PR's context (bug fix, new feature, refactor, etc.)
-- **Project Standards**: Base recommendations on the project's existing conventions and patterns
-- **Respect Author**: Be respectful and acknowledge good practices in the PR
-- **Security Focus**: Pay special attention to potential security vulnerabilities
-- **Performance Impact**: Consider performance implications of the changes
-
-## Error Handling
-
-- **No gh CLI**: If `gh` command is not available, inform the user to install GitHub CLI
-- **Authentication Issues**: If `gh` authentication fails, guide the user to run `gh auth login`
-- **PR Not Found**: If PR doesn't exist, inform the user and ask for a valid PR number
-- **API Rate Limiting**: If GitHub API rate limit is hit, inform the user and suggest trying later
+4.  **Step 4: Submit Review**
+    - Use the `AskUserQuestion` tool to show the generated review to the user and ask for confirmation before submitting.
+    - If confirmed, use a `worker` agent to run `gh pr review <PR_NUMBER> --<state> --body "<comment>"` to post the review to GitHub.

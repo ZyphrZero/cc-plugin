@@ -1,49 +1,39 @@
 ---
-description: Generate a commit message based on current changes
+description: "Analyzes code changes and generates a conventional commit message."
+argument-hint: ""
 ---
 
-# Commit Command
+# /commit
 
-You need to help the user generate a high-quality commit message. Please follow these steps
+This command analyzes staged and unstaged changes to generate a high-quality commit message that follows the project's existing style.
 
-## 0. Use worker agent to do following steps
+## When to use
 
-## 1. Fetch Git Information
+- **Use when:** The user wants to commit their changes, e.g., "commit my work", "create a commit".
+- **Suggest when:** The user indicates they have finished a task or a set of changes.
+- **Example:** "User: I'm done with the changes for the login page." -> Assistant suggests `/commit`.
+- **Example:** "User: wrap this up" -> Assistant suggests `/commit`.
 
-Run the following commands in parallel to get the current repository state:
+## Actions
 
-- `git diff` - View unstaged changes
-- `git diff --staged` - View staged changes
-- `git status` - View current branch and file status
-- `git log --oneline -10` - View the last 10 commits to understand the commit message format style
+1.  **Step 1: Gather Git Information**
 
-## 2. Analyze Changes
+    - Use a `worker` agent to run the following commands in parallel:
+      - `git diff --staged` (to see staged changes)
+      - `git diff` (to see unstaged changes)
+      - `git status` (to see current branch and file status)
+      - `git log --oneline -10` (to understand the project's commit message style)
 
-Based on the fetched information, analyze:
+2.  **Step 2: Analyze Changes and Generate Message**
 
-- Current branch name
-- File types and scope of changes
-- Nature of changes (new feature, fix, refactor, docs, etc.)
-- Commit message format style in history (whether using emoji, English/Chinese, following conventional commits, etc.)
+    - If there are no changes, inform the user and stop.
+    - If there are only unstaged changes, ask the user if they want to stage files first.
+    - Based on the git information, generate a commit message that:
+      - Follows the project's historical style (e.g., conventional commits, emoji usage).
+      - Accurately and concisely describes the changes.
+      - Explains the "why" behind the change, not just the "what".
 
-## 3. Generate Commit Message
-
-Based on the above analysis, generate a commit message that meets the following requirements:
-
-- **Follow project style**: Based on the historical commit format seen in git log
-- **Accurately describe changes**: Clearly explain what was changed
-- **Be concise**: Keep the first line within 50-72 characters (if in English)
-- **Use correct type**: Such as feat, fix, docs, refactor, test, chore, etc. (if the project uses conventional commits)
-
-## 4. Output Format
-
-After generating the commit message, use AskUserQuestion to the user and ask if they want to:
-
-1. Use this message to commit
-2. Need to modify it
-
-**Important Notes**:
-
-- If there are no changes (git status shows clean), inform the user there are no changes to commit
-- If there are only unstaged changes, ask the user if they need to add files first
-- The message should describe "why" rather than just "what"
+3.  **Step 3: Propose and Commit**
+    - Use the `AskUserQuestion` tool to present the generated message to the user.
+    - Ask if they want to use the message to commit, edit it, or cancel.
+    - If the user agrees to commit, run the `git commit -m "<message>"` command.
