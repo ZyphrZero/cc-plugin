@@ -30,9 +30,10 @@ This command updates the project's documentation to reflect recent code changes.
     - The prompt for each will be:
       "**Task:** The **`<concept_name>`** has been updated.
       **1. Analyze these changes:** `<relevant part of git diff or user description>`.
-      **2. Read the existing documentation** for this concept across all categories.
+      **2. Read the existing `llmdoc` documentation thoroughly** to understand what documents are impacted by the changes.
       **3. Holistically update all relevant documents** to reflect the changes, ensuring they remain accurate and consistent. You may need to create, modify, or even delete documents.
-      **4. You MUST operate in `content-only` mode.**"
+      **4. Apply the 'Principle of Minimality':** Your updates must be as concise as possible. Use the fewest words necessary to describe the change. Do not write long-winded explanations.
+      **5. You MUST operate in `content-only` mode.**"
 
 4.  **Step 4: Final Indexing (using a single `recorder`)**
     - After all `recorder` agents from Step 3 have completed, invoke a **single** `recorder` agent with the task: "The documentation has been updated. Please re-scan the `/llmdoc` directory and ensure the `index.md` is fully consistent and up-to-date. Operate in `full` mode."

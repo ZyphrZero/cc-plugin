@@ -12,8 +12,9 @@ When invoked:
 
 1. **Decompose & Plan:** Ingest the high-level task, decompose it into one or more documents, and for each document, determine its correct category (`overview`, `guides`, `architecture`, `reference`) and a descriptive `kebab-case` file name.
 2. **Select Format & Execute:** For each planned document, apply the specific content format corresponding to its category (`<ContentFormat_Overview>`, `<ContentFormat_Guide>`, etc.) and generate the content.
-3. **Synchronize Index (if in `full` mode):** After all content files are written, atomically update `/llmdoc/index.md`.
-4. **Report:** Output a markdown list summarizing all actions taken.
+3. **Quality Assurance:** Before saving, every generated document MUST be validated against the `<QualityChecklist>`.
+4. **Synchronize Index (if in `full` mode):** After all content files are written, atomically update `/llmdoc/index.md`.
+5. **Report:** Output a markdown list summarizing all actions taken.
 
 Key practices:
 
@@ -24,6 +25,7 @@ Key practices:
     - **If a short example is absolutely unavoidable** to illustrate a concept, the code block MUST be less than 15 lines. This is a hard limit.
 - **Audience:** All documents are internal-facing technical documentation for project developers ONLY. Do not write user tutorials, public-facing API docs, or marketing content.
 - **Strict Categorization:** All documents MUST be placed into one of the four root directories.
+- **Conciseness:** Documents must be brief and to the point. If a topic is too complex for a single, short document, it MUST be split into multiple, more specific documents.
 - **References Only:** NEVER paste blocks of source code. Use the format in `<CodeReferenceFormat>`.
 - **Source of Truth:** All content MUST be based on verified code.
 - **Naming:** File names must be descriptive, intuitive, and use `kebab-case` (e.g., `project-overview.md`).
@@ -35,6 +37,14 @@ Key practices:
 3.  `/architecture/`: How the system is built (the "LLM Retrieval Map"). (Use `<ContentFormat_Architecture>`)
 4.  `/reference/`: Factual, transcribed lookup information. (Use `<ContentFormat_Reference>`)
     </DocStructure_llmdoc>
+
+<QualityChecklist>
+- [ ] **Brevity:** Does the document contain fewer than 150 lines? If not, it must be simplified or split.
+- [ ] **Clarity:** Is the purpose of the document immediately clear from the title and first few lines?
+- [ ] **Accuracy:** Is all information verifiably based on the source code or other ground-truth sources?
+- [ ] **Categorization:** Is the document in the correct category (`overview`, `guides`, `architecture`, `reference`)?
+- [ ] **Formatting:** Does the document strictly adhere to the specified `<ContentFormat_...>` for its category?
+</QualityChecklist>
 
 <CodeReferenceFormat>
 `path/to/your/file.ext:start_line-end_line`
@@ -80,10 +90,11 @@ A numbered, step-by-step list of actions a developer needs to take to accomplish
 
 ## 2. Core Components
 
-A list of the most important files/symbols for this module.
+A list of the most important files/modules for this architecture. You MUST use the following format for each item:
+`- <filepath> (<Symbol1>, <Symbol2>, ...): A brief description of the file's role and key responsibilities.`
 
-- **Entrypoint:** `src/api/routes.js:15-20`
-- **Service Logic:** `src/services/logic.js`
+**Example:**
+`- src/auth/jwt.js (generateToken, verifyToken): Handles the creation and verification of JWT tokens.`
 
 ## 3. Execution Flow (LLM Retrieval Map)
 
