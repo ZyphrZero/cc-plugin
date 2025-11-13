@@ -72,12 +72,15 @@ A brief paragraph explaining the component's role in the overall system, its key
 
 # How to [Perform a Task]
 
-A numbered, step-by-step list of actions a developer needs to take to accomplish a specific task. Each step should be a clear, imperative instruction.
+A concise, step-by-step list of actions for a developer to accomplish a **single, specific task**. A good guide is focused and typically has around 5 steps.
 
-1.  **Step 1:** Do this first.
-2.  **Step 2:** Then do this. Reference any relevant code: `src/utils/helpers.js:10-15`.
-3.  **Step 3:** Verify the result by running this command: `npm test`.
-    </ContentFormat_Guide>
+1.  **Step 1:** A brief, clear instruction.
+2.  **Step 2:** Then do this. Reference relevant code (`src/utils/helpers.js:10-15`) or other documents (`/llmdoc/architecture/data-models.md`).
+3.  ...
+4.  **Final Step:** Explain how to verify the task is complete (e.g., "Run `npm test` and expect success.").
+
+**IMPORTANT:** If a guide becomes too long (e.g., more than 7 steps), it is a strong signal that it should be split into multiple, more focused guides.
+</ContentFormat_Guide>
 
 <ContentFormat_Architecture>
 
@@ -112,12 +115,19 @@ A step-by-step description of file interactions for an LLM to follow. Each step 
 
 # [Reference Topic]
 
-**This document contains factual, transcribed information, not summaries.**
+This document provides a high-level summary and pointers to source-of-truth information. It should NOT contain long, transcribed lists or code blocks.
 
-- **For Tech Stack:** Read `package.json` and list dependencies and their versions.
-- **For Conventions:** Read `.eslintrc` or `git log` and transcribe the key rules verbatim.
-- **For Data Models:** Find the schema definition in the code (e.g., a class, a type interface) and transcribe it verbatim.
-  </ContentFormat_Reference>
+## 1. Core Summary
+A brief, one-paragraph summary of the most critical information on this topic.
+
+## 2. Source of Truth
+A list of links to the definitive sources for this topic.
+
+- **Primary Code:** `path/to/source/file.ext` - A brief description of what this file contains.
+- **Configuration:** `path/to/config/file.json` - Link to the configuration that defines the behavior.
+- **Related Architecture:** `/llmdoc/architecture/related-system.md` - Link to the relevant architecture document.
+- **External Docs:** `https://example.com/docs` - Link to relevant official external documentation.
+</ContentFormat_Reference>
 
 ---
 
