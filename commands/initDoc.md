@@ -32,9 +32,9 @@ description: Generate great doc system for this project
      "**Task:** Holistically document the **`<selected_concept_name>`**.
      **1. Read all relevant scout reports and source code...**
      **2. Generate a small, hierarchical set of documents:**
-     - **Create ONE primary `architecture` document.** This is mandatory and should be the core 'LLM Retrieval Map'.
-     - **Create ONE primary `guide` document** that explains the most common workflow for this concept (e.g., `how-to-authenticate-a-user.md`).
-     - **Optionally, create ONE OR TWO concise `reference` documents** ONLY if there are critical, well-defined data structures or API specs. Do not create reference docs for minor details.
+     - **Create 1-2 primary `architecture` document.** This is mandatory and should be the core 'LLM Retrieval Map'.
+     - **Create 1-2 primary `guide` document** that explains the most common workflow for this concept (e.g., `how-to-authenticate-a-user.md`).
+     - **Optionally, create 1-2 concise `reference` documents** ONLY if there are critical, well-defined data structures or API specs. Do not create reference docs for minor details.
        **3. Operate in `content-only` mode.**"
 
 5. **Step 5: Final Indexing**
