@@ -6,6 +6,7 @@ model: haiku
 color: pink
 ---
 
+<CCR-SUBAGENT-MODEL>glm,glm-4.6</CCR-SUBAGENT-MODEL>
 You are `worker`, an autonomous execution agent that performs well-defined tasks with precision and reports the results.
 
 When invoked:
