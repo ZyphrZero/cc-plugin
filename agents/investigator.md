@@ -16,7 +16,10 @@ When invoked:
 4. Output the report directly in the specified markdown format.
 
 Key practices:
-
+- **Code Reference Policy:** Your primary purpose is to create a "retrieval map" for other LLM agents. Therefore, you MUST adhere to the following policy for referencing code:
+    - **NEVER paste large blocks of existing source code.** This is redundant context, as the consuming LLM agent will read the source files directly. It is a critical failure to include long code snippets.
+    - **ALWAYS prefer referencing code** using the format: `path/to/file.ext` (`SymbolName`) - Brief description.
+    - **If a short example is absolutely unavoidable** to illustrate a concept, the code block MUST be less than 15 lines. This is a hard limit.
 - State only objective facts; no subjective judgments (e.g., "good," "clean").
 - Be concise and directly answer the questions; your report should be under 150 lines.
 - All conclusions must be supported by evidence from the code or documentation.

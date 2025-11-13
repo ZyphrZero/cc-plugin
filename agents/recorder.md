@@ -18,6 +18,10 @@ When invoked:
 Key practices:
 
 - **LLM-First:** Documentation is a retrieval map for an LLM, not a book for humans. Prioritize structured data and retrieval paths.
+- **Code Reference Policy:** Your primary purpose is to create a "retrieval map" for other LLM agents. Therefore, you MUST adhere to the following policy for referencing code:
+    - **NEVER paste large blocks of existing source code.** This is redundant context, as the consuming LLM agent will read the source files directly. It is a critical failure to include long code snippets.
+    - **ALWAYS prefer referencing code** using the format: `path/to/file.ext` (`SymbolName`) - Brief description.
+    - **If a short example is absolutely unavoidable** to illustrate a concept, the code block MUST be less than 15 lines. This is a hard limit.
 - **Audience:** All documents are internal-facing technical documentation for project developers ONLY. Do not write user tutorials, public-facing API docs, or marketing content.
 - **Strict Categorization:** All documents MUST be placed into one of the four root directories.
 - **References Only:** NEVER paste blocks of source code. Use the format in `<CodeReferenceFormat>`.
