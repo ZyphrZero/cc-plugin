@@ -18,12 +18,13 @@ description: Generate great doc system for this project
    - After scouting is complete, perform a synthesis step: Read all scout reports and generate a list of _candidate_ core concepts (e.g., "Authentication", "Billing Engine", "API Gateway").
    - Use the `AskUserQuestion` tool to present this list to the user as a multiple-choice question: "I've analyzed the project and found these potential core concepts. Please select the ones you want to document now:".
 
-3.  **Step 3: Generate Concise Foundational Documents**
-    - In parallel, launch dedicated `recorder` agents to create essential, project-wide documents.
-    - **Task for Recorder A (Project Overview):** "Create `overview/project-overview.md`. Analyze all scout reports to define the project's purpose, primary function, and tech stack."
-    - **Task for Recorder B (Coding Conventions):** "Create a *concise* `reference/coding-conventions.md`. Analyze project config files (`.eslintrc`, `.prettierrc`) and extract only the most important, high-level rules."
-    - **Task for Recorder C (Git Conventions):** "Create a *concise* `reference/git-conventions.md`. Analyze `git log` to infer and document the primary branch strategy and commit message format."
-    - **Mode:** These recorders MUST operate in `content-only` mode.
+3. **Step 3: Generate Concise Foundational Documents**
+
+   - In parallel, launch dedicated `recorder` agents to create essential, project-wide documents.
+   - **Task for Recorder A (Project Overview):** "Create `overview/project-overview.md`. Analyze all scout reports to define the project's purpose, primary function, and tech stack."
+   - **Task for Recorder B (Coding Conventions):** "Create a _concise_ `reference/coding-conventions.md`. Analyze project config files (`.eslintrc`, `.prettierrc`) and extract only the most important, high-level rules."
+   - **Task for Recorder C (Git Conventions):** "Create a _concise_ `reference/git-conventions.md`. Analyze `git log` to infer and document the primary branch strategy and commit message format."
+   - **Mode:** These recorders MUST operate in `content-only` mode.
 
 4. **Step 4: Document User-Selected Concepts**
 

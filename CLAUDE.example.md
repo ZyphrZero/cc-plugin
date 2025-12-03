@@ -11,19 +11,20 @@ IMPORANT: You must read the documentation thoroughly, at least more than three d
 </always-step-one>
 
 <llmdoc-structure>
-- /llmdoc/index.md: The main index document. Always read this first.
-- /llmdoc/overview/: For high-level project context. Answers "What is this project?". All documents in this directory MUST be read to understand the project's goals.
-- /llmdoc/guides/: For step-by-step operational instructions. Answers "How do I do X?".
-- /llmdoc/architecture/: For how the system is built (the "LLM Retrieval Map"). Answers "How does it work?".
-- /llmdoc/reference/: For detailed, factual lookup information (e.g., API specs, data models, conventions). Answers "What are the specifics of X?".
+
+- llmdoc/index.md: The main index document. Always read this first.
+- llmdoc/overview/: For high-level project context. Answers "What is this project?". All documents in this directory MUST be read to understand the project's goals.
+- llmdoc/guides/: For step-by-step operational instructions. Answers "How do I do X?".
+- llmdoc/architecture/: For how the system is built (the "LLM Retrieval Map"). Answers "How does it work?".
+- llmdoc/reference/: For detailed, factual lookup information (e.g., API specs, data models, conventions). Answers "What are the specifics of X?".
+
+ATTENTION: `llmdoc` is always located in the root directory of the current project, like projectRootPath/llmdoc/\*\*. If the `llmdoc` folder does not exist in the current project's root directory, it means llmdoc has not been initialized, so ignore any llmdoc-related requirements.
+
 </llmdoc-structure>
 
 <tool-usage-exention>
-- **ALWAYS tr:scout agent instead of Explore Agent.**
-- **ALWAYS Use tr:scout agent instead of Plan Agent.**
-- **ALWAYS Use tr:scout agent in Plan Mode, DO NOT USE plan agent!!!!**
-- Always use tr:scout to obtain the necessary information to solve the problem. At this step, it is recommended to break it down into smaller sub-problems and concurrently gather information using tr:scout.
-- The prerequisite for using tr:scout is to follow the `always-step-one` principle, first obtaining sufficient information based on the current project's documentation system, and then using tr:scout for further step-by-step problem investigation.
+- Always use tr:investigator to obtain the necessary information to solve the problem. At this step, it is recommended to break it down into smaller sub-problems and concurrently gather information using tr:investigator.
+- The prerequisite for using tr:investigator is to follow the `always-step-one` principle, first obtaining sufficient information based on the current project's documentation system, and then using tr:investigator for further step-by-step problem investigation.
 
 </tool-usage-exention>
 
@@ -31,9 +32,9 @@ IMPORANT: You must read the documentation thoroughly, at least more than three d
 Option-based programming never jumps to conclusions. Instead, after thorough research and consideration, uses the `AskUserQuestion` tool to present users with choices, allowing them to continue their work based on the selected options.
 </optional-coding>
 
-- **ALWAYS tr:scout agent instead of Explore Agent.**
-- **ALWAYS Use tr:scout agent instead of Plan Agent.**
-- **The last TODO for any programming task is always to update the project's documentation system with using docer agent.**
+- **ALWAYS tr:investigator agent instead of Explore Agent.**
+- **ALWAYS Use tr:investigator agent instead of Plan Agent.**
+- **The last TODO for any programming task is always to update the project's documentation system with using recorder agent.**
 - Try to use bg-worker for all tasks that can accurately describe the work path, such as executing a series of Bash commands, simple script writing, code modification, unit testing, and so on.
 - If you only care about how a task is executed and its results, you should consider use bg-worker agent.
 - Always use rule: `always-step-one`
@@ -42,9 +43,9 @@ Option-based programming never jumps to conclusions. Instead, after thorough res
 </system-reminder>
 
 <system-reminder>
-- **ALWAYS tr:scout agent instead of Explore Agent.**
-- **ALWAYS Use tr:scout agent instead of Plan Agent.**
-- **ALWAYS Use tr:scout agent in Plan Mode, DO NOT USE plan agent!!!!**
+- **ALWAYS tr:investigator agent instead of Explore Agent.**
+- **ALWAYS Use tr:investigator agent instead of Plan Agent.**
+- **ALWAYS Use tr:investigator agent in Plan Mode, DO NOT USE plan agent!!!!**
 - **Document-Driven Development, always prioritize reading relevant llmdocs, determine modification plans based on documentation and actual code file reading, refer to `llmdoc-structure` for the project's documentation structure**  
 - **Maintain llmdocs, after completing programming tasks and confirming that the user's issue is resolved, proactively use the recorder agent to maintain the documentation system, and carefully describe the changes and reasons in the `prompt` parameter**
 
