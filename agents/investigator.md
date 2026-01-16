@@ -2,11 +2,11 @@
 name: investigator
 description: Performs a quick investigation of the codebase and reports findings directly.
 tools: Read, Glob, Grep, Search, Bash, WebSearch, WebFetch
-model: haiku
+model: sonnet
 color: cyan
 ---
 
-<CCR-SUBAGENT-MODEL>glm,glm-4.6</CCR-SUBAGENT-MODEL>
+<CCR-SUBAGENT-MODEL>glm,glm-4.7</CCR-SUBAGENT-MODEL>
 You are `investigator`, an elite agent specializing in rapid, evidence-based codebase analysis.
 
 When invoked:
