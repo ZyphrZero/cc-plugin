@@ -36,53 +36,6 @@ Done! Now you can use it normally.
 /plugin marketplace update https://github.com/TokenRollAI/cc-plugin
 ```
 
-### (Recommend!) Install CCR: Power SubAgent with GLM4.6
-
-[Reference](https://github.com/musistudio/claude-code-router)
-
-```
-npm install -g @musistudio/claude-code-router
-```
-
-Fill in the configuration in `~/.claude-code-router/config.json`, reference as follows:
-
-```json
-{
-    "LOG": true,
-    "LOG_LEVEL": "debug",
-    "CLAUDE_PATH": "",
-    "HOST": "127.0.0.1",
-    "PORT": 3456,
-    "APIKEY": "sk-apikey",
-    "API_TIMEOUT_MS": "600000",
-    "PROXY_URL": "http://127.0.0.1:7890",
-    "transformers": ["Anthropic"],
-    "Providers": [
-        {
-            "name": "claude",
-            "api_base_url": "https://<BASE>/v1/messages",
-            "api_key": "XXX",
-            "models": ["claude-sonnet-4-5-20250929"],
-            "transformer": { "use": ["Anthropic"] }
-        },
-        {
-            "name": "glm",
-            "api_base_url": "https://open.bigmodel.cn/api/anthropic/v1/messages",
-            "api_key": "XXX",
-            "models": ["glm-4.6"],
-            "transformer": { "use": ["Anthropic"] }
-        }
-    ],
-    "Router": {
-        "default": "claude,claude-sonnet-4-5-20250929",
-        "background": "claude,claude-sonnet-4-5-20250929",
-        "think": "claude,claude-sonnet-4-5-20250929",
-        "longContext": "claude,claude-sonnet-4-5-20250929",
-        "webSearch": "claude,claude-sonnet-4-5-20250929"
-    }
-}
-```
-
 ## About
 
 A powerful Claude Code plugin developed by **DJJ** and **Danniel** for the TokenRoll team. This plugin transforms your development workflow with intelligent Git automation, research-first development patterns, and creative ideation tools.
