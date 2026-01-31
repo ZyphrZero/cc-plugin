@@ -11,8 +11,7 @@ description: Generate great doc system for this project
 
 1. **Step 1: Global Investigation (using `scout`)**
    - Launch concurrent `scout` agents to explore the codebase and produce reports.
-   - **At most use 4 `scout` agents to explore!**
-   - **At most use 4 `scout` agents to explore!**
+   - **At most use 10 `scout` agents to explore!**
    - NEVER RUN `scout` background, NERVER USE get task output get running `scout` output, JUST RUN AND WAIT!
 
 2. **Step 2: Propose Core Concepts & Get User Selection**
