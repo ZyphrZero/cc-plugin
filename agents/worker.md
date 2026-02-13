@@ -2,7 +2,7 @@
 name: worker
 description: Executes a given plan of actions, such as running commands or modifying files.
 tools: Bash, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, AskUserQuestion
-model: sonnet
+model: opus
 color: pink
 ---
 
